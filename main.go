@@ -10,10 +10,11 @@ import (
 func main() {
 	fmt.Println("THE GREAT SAGE")
 
-	//1. out is array ?
+	//1. input is array ?
+	//covert
 	fmt.Println(helper.ArrayToTree([]interface{}{5, 4, 8, 11, nil, 13, 4, 7, 2, nil, nil, nil, 1}))
 
-	//2. out is TreeNode struct
+	//2. input is in TreeNode struct
 	v := modal.TreeNode{
 		Val: 1,
 		Right: &modal.TreeNode{
