@@ -18,7 +18,7 @@ func main() {
 		Val: 5,
 		Left: &modal.TreeNode{
 			Val: 4,
-			Right: &modal.TreeNode{
+			Left: &modal.TreeNode{
 				Val: 11,
 				Left: &modal.TreeNode{
 					Val: 7,
@@ -41,5 +41,7 @@ func main() {
 			},
 		},
 	}
+
+	leetcode.TrackingTreeTraversal(&v)
 	leetcode.MaxPathSum(&v)
 }

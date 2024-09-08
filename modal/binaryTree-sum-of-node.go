@@ -5,3 +5,9 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
+
+type WalkThru struct {
+	Curr int
+	Next string
+	// ChildOf int
+}
