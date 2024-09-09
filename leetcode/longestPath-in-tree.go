@@ -6,7 +6,7 @@ import (
 )
 
 // post checking
-// No matter `LEFT->right->root or Right->left->root`(*) , they are all start from root, go straight to the deepest Node follow the key starting of (*), then follow the (*) go up to root.
+// No matter `LEFT->right->root or Right->left->root`(*) , they all start from root, go straight to the deepest node follow the starting direction of (*), then follow the (*) go node-by-node of the tree.
 func findHeight(node *modal.TreeNode, maxDiameter *int, trackingPath *[]int) (int, []int) {
 	if node == nil {
 		return 0, []int{}
