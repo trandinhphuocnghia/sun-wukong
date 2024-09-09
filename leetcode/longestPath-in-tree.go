@@ -7,51 +7,51 @@ import (
 
 // post checking
 // No matter `LEFT->right->root or Right->left->root`(*) , they are all start from root, go straight to the deepest Node follow the key starting of (*), then follow the (*) go up to root.
-func postOrderTraversal(node *modal.TreeNode, walkThru *[]modal.WalkThru, theTraversal *[]int) {
+func findHeight(node *modal.TreeNode, maxDiameter *int, trackingPath *[]int) (int, []int) {
 	if node == nil {
-		return
+		return 0, []int{}
 	}
-	var step modal.WalkThru
 
-	//fmt.Println("FROM: ", node.Val)
+	// Recursively find the height of left and right subtrees
+	leftHeight, leftPath := findHeight(node.Left, maxDiameter, trackingPath)
+	rightHeight, rightPath := findHeight(node.Right, maxDiameter, trackingPath)
+	fmt.Println("maxDiameter", *maxDiameter)
 
-	if node.Left != nil || node.Right != nil {
-		if node.Left != nil {
-			step.Curr = node.Val
-			//follow the (*) free to go "down, left"
-			step.Next = "DOWN TO THE LEFT"
-			*walkThru = append(*walkThru, step)
-		} else {
-			step.Curr = node.Val
-			//follow the (*) free to go "down, left"
-			step.Next = "check L, ->"
-			*walkThru = append(*walkThru, step)
-		}
+	fmt.Println("node: ", node.Val)
+	fmt.Println("left :", leftHeight)
+	if node.Left != nil {
+		fmt.Println("Left Node :", node.Left.Val)
+	}
+	fmt.Println("right", rightHeight)
+	if node.Right != nil {
+		fmt.Println("Right Node :", node.Right.Val)
+	}
+	fmt.Println("-----")
+
+	//for the hole tree
+	if leftHeight+rightHeight > *maxDiameter {
+		*maxDiameter = leftHeight + rightHeight
+		*trackingPath = append(leftPath, node.Val)
+		*trackingPath = append(*trackingPath, rightPath...)
+	}
+
+	//for current node check the under of it
+	// Return the height of the current node
+	if leftHeight > rightHeight {
+		return leftHeight + 1, append(leftPath, node.Val)
+
 	} else {
-		step.Curr = node.Val
-		step.Next = "self-check"
-		*walkThru = append(*walkThru, step)
+		return rightHeight + 1, append(rightPath, node.Val)
 	}
-
-	// fmt.Println("<-, ><")
-	postOrderTraversal(node.Left, walkThru, theTraversal)
-
-	// fmt.Println("After go LEFT of: ", node.Val)
-	// fmt.Println("->")
-	postOrderTraversal(node.Right, walkThru, theTraversal)
-	// fmt.Println("After go RIGHT of: ", node.Val)
-	// fmt.Println("DONE: ", node.Val)
-	*theTraversal = append(*theTraversal, node.Val)
 }
 
 func TrackingTreeTraversal(root *modal.TreeNode) {
-	var walkThru []modal.WalkThru
-	var theTraversal []int
+	var maxDiameter int
+	var trackingPath []int
 
-	postOrderTraversal(root, &walkThru, &theTraversal)
+	findHeight(root, &maxDiameter, &trackingPath)
 
-	fmt.Println(theTraversal)
-	fmt.Println("-----------")
-	fmt.Println(walkThru)
+	fmt.Println(maxDiameter)
+	fmt.Println(trackingPath)
 
 }

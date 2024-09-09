@@ -43,5 +43,4 @@ func main() {
 	}
 
 	leetcode.TrackingTreeTraversal(&v)
-	leetcode.MaxPathSum(&v)
 }
