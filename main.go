@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"sunwukong/leetcode"
+	leetcode "sunwukong/leetcode/golang"
 	"sunwukong/modal"
 )
 
