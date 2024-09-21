@@ -130,29 +130,3 @@ Employee
 +------------------+---------+
 */
 SELECT project_id, ROUND(AVG(experience_years)) AS experience_years FROM Project JOIN Employee ON Project.employee_id = Employee.employee_id;
-
-/*
-Table: Product
-+--------------+---------+
-| Column Name  | Type    |
-+--------------+---------+
-| product_id   | int     |
-| product_name | varchar |
-| unit_price   | int     |
-+--------------+---------+
-product_id is the primary key (column with unique values) of this table.
-Each row of this table indicates the name and the price of each product.
-
-Table: Sales
-+-------------+---------+
-| Column Name | Type    |
-+-------------+---------+
-| seller_id   | int     |
-| product_id  | int     |
-| buyer_id    | int     |
-| sale_date   | date    |
-| quantity    | int     |
-| price       | int     |
-+-------------+---------+
-
-*/
